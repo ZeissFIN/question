@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷分配中...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0078d4; /* Microsoft blue */
+        }
+        a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>正在为您分配问卷...</h1>
+        <p>如果长时间未跳转，请尝试<a id="fallbackLink" href="#">点击这里</a>。</p>
+    </div>
+    <script>
+        // 在这里放入你所有Forms的链接
+        const formUrls = [
+            'https://forms.office.com/e/PcaS7QkygD', // 替换为你的第一个Forms链接
+            'https://forms.office.com/e/VR73VwN1cJ', // 替换为你的第二个Forms链接
+            'https://forms.office.com/e/GGGmzCFAqh',  // 替换为你的第三个Forms链接
+            'https://forms.office.com/e/V7h4AcfgZK'
+            // 如果有更多Forms，请在这里继续添加
+        ];
+        // 随机选择一个索引
+        const randomIndex = Math.floor(Math.random() * formUrls.length);
+        // 获取随机选中的Forms链接
+        const selectedFormUrl = formUrls[randomIndex];
+        // 立即重定向用户的浏览器
+        // window.location.replace() 比 window.location.href 更推荐，
+        // 因为它会替换当前历史记录，用户点击返回按钮不会回到这个重定向页面
+        window.location.replace(selectedFormUrl);
+        // 为以防万一的跳转失败提供一个备用链接
+        document.addEventListener('DOMContentLoaded', () => {
+            const fallbackLink = document.getElementById('fallbackLink');
+            if (fallbackLink) {
+                fallbackLink.href = selectedFormUrl;
+            }
+        });
+    </script>
+</body>
+</html>
